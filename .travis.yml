@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run --rm -e CI=true rzldev/react-docker:latest sh -c "npm run test && npm run lint"
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-west-2'
+  app: react_docker
+  env: 'Docker-env'
+  bucket_name: 'elasticbeanstalk-us-west-w-72039485780263405'
+  bucket_path: 'react_docker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
