@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t rzldev/react-docker:latest -f Dockerfile.dev .
+
+script:
+  - docker run --rm -e CI=true rzldev/react-docker:latest sh -c "npm run test && npm run lint"

@@ -18,4 +18,5 @@ services:
     volumes:
       - ./app/node_modules
       - ./:/var/www/html/testing/
-    command: ["npm", "run", "test"]
+    command: >
+      sh -c "npm run test && npm run lint"
